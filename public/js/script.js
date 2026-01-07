@@ -1,0 +1,1 @@
+alert('Halo bang selamat datang di laravel 12');

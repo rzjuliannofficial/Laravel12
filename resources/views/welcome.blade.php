@@ -21,6 +21,16 @@
     </head>
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
+        <h1 class="text-4xl font-bold text-red-600 underline">
+            Halo Julian, Tailwind v4 Berhasil!
+        </h1>    
+        <nav class="text-white flex gap-4 lg:justify-center">
+            <a href="/welcome">Welcome</a>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/blog">Blog</a>
+            <a href="/contact">Contact</a>
+        </nav>
             @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
                     @auth
