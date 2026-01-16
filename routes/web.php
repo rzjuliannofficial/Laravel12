@@ -20,6 +20,7 @@ Route::get('/blogs', function () {
         'blogs' => [
             [
                 'id'=> 1,
+                'slug' => 'judul-artikel-1',
                 'title' => 'Judul Artikel 1',
                 'author' => 'Nabhan Rizqi Julian Saputro', 
                 'date' => '14 Juni 2026',
@@ -27,6 +28,7 @@ Route::get('/blogs', function () {
             ],
             [
                 'id'=> 2,
+                'slug' => 'judul-artikel-2',
                 'title' => 'Judul Artikel 2',
                 'author' => 'Nabhan Rizqi Julian Saputro', 
                 'date' => '15 Juni 2026',
@@ -34,6 +36,7 @@ Route::get('/blogs', function () {
             ],
             [
                 'id'=> 3,
+                'slug' => 'judul-artikel-3',
                 'title' => 'Judul Artikel 3',
                 'author' => 'Nabhan Rizqi Julian Saputro', 
                 'date' => '14 Januari 2026',
@@ -44,10 +47,12 @@ Route::get('/blogs', function () {
 });
 
 // halaman single blog
-Route::get('/blogs/{id}', function($id){
+//Route::get('/blogs/{id}', function($id){ ini menggunakan $id
+Route::get('/blogs/{slug}', function($slug){
     $blogs = [
             [
                 'id'=> 1,
+                'slug' => 'judul-artikel-1',
                 'title' => 'Judul Artikel 1',
                 'author' => 'Nabhan Rizqi Julian Saputro', 
                 'date' => '14 Juni 2026',
@@ -55,6 +60,7 @@ Route::get('/blogs/{id}', function($id){
             ],
             [
                 'id'=> 2,
+                'slug' => 'judul-artikel-2',
                 'title' => 'Judul Artikel 2',
                 'author' => 'Nabhan Rizqi Julian Saputro', 
                 'date' => '15 Juni 2026',
@@ -62,6 +68,7 @@ Route::get('/blogs/{id}', function($id){
             ],
             [
                 'id'=> 3,
+                'slug' => 'judul-artikel-3',
                 'title' => 'Judul Artikel 3',
                 'author' => 'Nabhan Rizqi Julian Saputro', 
                 'date' => '14 Januari 2026',
@@ -69,7 +76,11 @@ Route::get('/blogs/{id}', function($id){
             ]
         ];
 
-    $blog = Arr::first();
+    $blog = Arr::first($blogs, function($blog) use ($slug){
+        return $blog['slug'] == $slug;
+    });
+
+    return view('blog' ,['title' => 'Single Blog' , 'blog' => $blog]);
 });
 
 Route::get('/contact', function () {
