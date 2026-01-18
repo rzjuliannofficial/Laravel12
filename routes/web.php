@@ -24,9 +24,7 @@ Route::get('/blogs', function () {
 //Route::get('/blogs/{id}', function($id){ ini menggunakan $id
 Route::get('/blogs/{slug}', function($slug){
 
-    $blog = Arr::first(Blog::all(), function($blog) use ($slug){
-        return $blog['slug'] == $slug;
-    });
+    $blog = Blog::find($slug);
 
     return view('blog' ,['title' => 'Single Blog' , 'blog' => $blog]);
 });

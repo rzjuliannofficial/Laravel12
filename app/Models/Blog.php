@@ -1,6 +1,9 @@
 <?php 
 
 namespace App\Models;
+
+use Illuminate\Support\Arr;
+
 class Blog {
     public static function all(){
         return [
@@ -29,5 +32,18 @@ class Blog {
                 'body' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum nemo qui sunt fugiat temporibus, quas sequi praesentium, vel adipisci incidunt nihil esse maiores explicabo aut! Cum incidunt tenetur similique laudantium.'
             ]
         ];
+    }
+
+    public static function find($slug):array {
+        // return Arr::first(static::all(), function($blog) use ($slug){
+        //     return $blog['slug'] == $slug;
+        // });
+
+
+        $blog = Arr::first(static::all(), fn($blog) => $blog['slug'] ==$slug);
+        if (!$blog){
+            abort(404);
+        }    
+        return $blog;
     }
 }
